@@ -107,3 +107,30 @@
 - 小冬瓜人格文件存在于workspace/但配置未指向，是历史遗留问题
 
 ---
+
+### INC-004：sandbox.mode "docker" 不支持
+
+**日期：** 2026-05-30
+
+**问题现象：**
+> 配置main agent的 `sandbox.mode: "docker"` 时报错：`Invalid input (allowed: "off", "non-main", "all")`
+
+**原因：**
+> OpenClaw 2026.5.22版本中 `sandbox.mode` 只支持三个固定值："off", "non-main", "all"。不存在"docker"模式。
+
+**修复动作：**
+1. 先尝试 `sandbox.mode: "docker"` → 失败
+2. 改用 `sandbox.mode: "all"` → 成功
+3. 这意味着main agent没有任何沙箱限制
+
+**验证方法：**
+- `openclaw gateway run` 成功启动
+- 日志显示 `gateway ready`
+- 3个飞书账号websocket连接成功
+
+**教训：**
+- 不能想当然认为OpenClaw支持"docker"模式
+- 必须先查阅官方文档或 `openclaw doctor` 确认支持的具体值
+- 当前方案 `mode: all` 是折中，安全级别较低
+
+---

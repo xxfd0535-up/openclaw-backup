@@ -1,0 +1,191 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "/home/administrator/.openclaw/workspace",
+      "model": {
+        "primary": "minimax/MiniMax-M2.7-highspeed",
+        "fallbacks": [
+          "deepseek/deepseek-v4-flash",
+          "deepseek/deepseek-v4-pro"
+        ]
+      },
+      "models": {
+        "deepseek/deepseek-v4-flash": {},
+        "deepseek/deepseek-v4-pro": {},
+        "minimax/MiniMax-M2.7-highspeed": {},
+        "minimax/MiniMax-M2.7": {}
+      }
+    },
+    "list": [
+      {
+        "id": "xiajie-zs",
+        "workspace": "/home/administrator/.openclaw/agents/xiajie-zs/agent",
+        "agentDir": "/home/administrator/.openclaw/agents/xiajie-zs/agent",
+        "sandbox": {
+          "mode": "off",
+          "workspaceAccess": "rw"
+        },
+        "tools": {
+          "deny": [
+            "gateway",
+            "apply_patch",
+            "process",
+            "browser"
+          ]
+        }
+      },
+      {
+        "id": "jiangtao-zs",
+        "workspace": "/home/administrator/.openclaw/agents/jiangtao-zs/agent",
+        "agentDir": "/home/administrator/.openclaw/agents/jiangtao-zs/agent",
+        "sandbox": {
+          "mode": "off",
+          "workspaceAccess": "rw"
+        },
+        "tools": {
+          "deny": [
+            "gateway",
+            "apply_patch",
+            "process",
+            "browser"
+          ]
+        }
+      },
+      {
+        "id": "main",
+        "workspace": "/home/administrator/.openclaw/agents/main/agent",
+        "agentDir": "/home/administrator/.openclaw/agents/main/agent",
+        "sandbox": {
+          "mode": "all"
+        },
+        "tools": {}
+      }
+    ]
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "token": "myauthpassword123"
+    }
+  },
+  "plugins": {
+    "allow": [
+      "feishu"
+    ],
+    "entries": {
+      "feishu": {
+        "enabled": true
+      }
+    }
+  },
+  "channels": {
+    "feishu": {
+      "defaultAccount": "xiajie-zs",
+      "accounts": {
+        "xiajie-zs": {
+          "appId": "cli_aa9dee2a4238dbb5",
+          "appSecret": "IYoXP2AsIcbVZmzC5bIMkhFQbpKJKeAK",
+          "name": "夏爱华的智能助手",
+          "groupPolicy": "open",
+          "groups": {
+            "oc_8435d436e743ad2144feb848d46ba0e3": {
+              "requireMention": false
+            }
+          },
+          "tools": {
+            "doc": true
+          }
+        },
+        "jiangtao-zs": {
+          "appId": "cli_aa9d861976f85be9",
+          "appSecret": "1OLHROSl8RMECxEP8cGtMfLFqpW3ha5a",
+          "name": "艺洋夏姐的智能助手",
+          "groupPolicy": "open",
+          "groups": {
+            "oc_bb3353f1bbdaddfa476002b74abe693c": {
+              "requireMention": false
+            }
+          },
+          "tools": {
+            "doc": true
+          }
+        },
+        "main": {
+          "appId": "cli_aa9b593264b8dbdb",
+          "appSecret": "rgaqGws2DlRF5EIhtJfDJcY6LE0rejnQ",
+          "name": "小龙虾外部群",
+          "groupPolicy": "open",
+          "groups": {
+            "oc_bb32e5befdda6949efe320cee8802ebb": {
+              "requireMention": false
+            }
+          },
+          "tools": {
+            "doc": true
+          }
+        }
+      }
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "xiajie-zs",
+      "match": {
+        "channel": "feishu",
+        "accountId": "xiajie-zs",
+        "peer": {
+          "kind": "group",
+          "id": "oc_8435d436e743ad2144feb848d46ba0e3"
+        }
+      }
+    },
+    {
+      "agentId": "jiangtao-zs",
+      "match": {
+        "channel": "feishu",
+        "accountId": "jiangtao-zs",
+        "peer": {
+          "kind": "group",
+          "id": "oc_bb3353f1bbdaddfa476002b74abe693c"
+        }
+      }
+    },
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "feishu",
+        "accountId": "main",
+        "peer": {
+          "kind": "group",
+          "id": "oc_bb32e5befdda6949efe320cee8802ebb"
+        }
+      }
+    }
+  ],
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "minimax": {
+        "baseUrl": "https://api.minimaxi.com/anthropic",
+        "apiKey": "",
+        "api": "anthropic-messages",
+        "models": [
+          {
+            "id": "MiniMax-M2.7-highspeed",
+            "name": "MiniMax M2.7 Highspeed",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "contextWindow": 204800,
+            "maxTokens": 131072
+          }
+        ]
+      }
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.5.22",
+    "lastTouchedAt": "2026-05-30"
+  }
+}
