@@ -26,7 +26,7 @@
 | 2026-05-29 | 安装飞书CLI @larksuite/cli | 让AI直接操作飞书 | ✅ v1.0.43已安装并配置App ID |
 | 2026-05-29 | 修复jiangtao-zs agent工作区 | 缺少BOOTSTRAP.md和完整配置 | ✅ 已初始化git仓库和完整文件 |
 | 2026-05-30 | 修复sandbox=off解决Docker缺失问题 | WSL无Docker守护进程 | ✅ Gateway正常启动 |
-| 2026-05-30 | Agent权限隔离配置完成 | sandbox=off + tools.deny | ✅ 3账号运行中 |
+| 2026-05-30 | Agent权限分级配置 | main无限制，xiajie/jangtao用sandbox.workspaceAccess=rw | ✅ 已生效 |
 | 2026-05-30 | 身份漂移问题已解决 | 删除admin agent，统一小冬瓜身份 | ✅ INC-003已记录 |
 
 ---
